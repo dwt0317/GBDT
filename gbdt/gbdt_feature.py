@@ -1,20 +1,16 @@
 #coding:utf-8
 
 import xgboost as xgb
-from sklearn import cross_validation
-import load_data
 import cPickle as pickle
-import csv
-from collections import Counter
-import pandas as pd
-from sklearn.metrics import f1_score
-from sklearn.ensemble import RandomForestClassifier
+import Constants
+import numpy as np
 
-train_x = pickle.load(open("../data/train_x", "rb"))
-train_y = pickle.load(open("../data/train_y", "rb"))
+
+train_x = Constants.dir_path + "sample\\features\\training.gbdt.libfm"
+train_y = np.loadtxt(Constants.dir_path + "sample\\training.Y", dtype=int)
 print "train done"
-test_x = pickle.load(open("../data/test_x", "rb"))
-test_y = pickle.load(open("../data/test_y", "rb"))
+test_x = Constants.dir_path + "sample\\features\\validation.gbdt.libfm"
+test_y = np.loadtxt(Constants.dir_path + "sample\\validation.Y", dtype=int)
 print "test done"
 
 train_set = xgb.DMatrix(train_x, train_y)
@@ -33,7 +29,7 @@ params = {"objective": 'multi:softmax',
               'gamma':1,
 'early_stopping_rounds':10
 }
-rounds = 30
+rounds = 20
 print "Training model..."
 xgb_model = xgb.train(params, train_set, rounds, watchlist, verbose_eval=True)
 train_pred = xgb_model.predict(xgb.DMatrix(test_x), ntree_limit=xgb_model.best_ntree_limit)
@@ -61,6 +57,6 @@ train_ind = xgb_model.predict(xgb.DMatrix(train_x), ntree_limit=xgb_model.best_n
 
 print test_ind.shape, train_ind.shape
 print test_ind
-pickle.dump(test_ind, open("../data/gdbt_test_x_ind_1", "wb"))
-pickle.dump(train_ind, open("../data/gdbt_train_x_ind_1", "wb"))
+pickle.dump(test_ind, open(Constants.dir_path + "sample\\features\\gbdt\\test.idx", "wb"))
+pickle.dump(train_ind, open(Constants.dir_path + "sample\\features\\gbdt\\training.idx", "wb"))
 print "All done"
