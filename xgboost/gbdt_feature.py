@@ -1,13 +1,14 @@
 #coding:utf-8
 
-import xgboost as xgb
-import cPickle as pickle
-import Constants
 import numpy as np
-from xgboost.sklearn import XGBClassifier
 from sklearn import metrics   #Additional scklearn functions
-from sklearn.model_selection import GridSearchCV   #Perforing grid search
 from sklearn.datasets import load_svmlight_file
+from sklearn.model_selection import GridSearchCV   #Perforing grid search
+from xgboost.sklearn import XGBClassifier
+
+import Constants
+import xgboost as xgb
+
 
 # tp, fn, fp, tn
 def get_metric(test_y, train_pred):
