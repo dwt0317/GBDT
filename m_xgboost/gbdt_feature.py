@@ -85,8 +85,8 @@ def train_model():
     # print test_ind.shape, train_ind.shape
     # for i in range(30):
     #     print test_ind[i]
-    # # pickle.dump(test_ind, open(Constants.dir_path + "sample\\features\\gbdt\\test.idx", "wb"))
-    # # pickle.dump(train_ind, open(Constants.dir_path + "sample\\features\\gbdt\\training.idx", "wb"))
+    # # pickle.dump(test_ind, open(Constants.dir_path + "sample\\features\\m_gbdt\\test.idx", "wb"))
+    # # pickle.dump(train_ind, open(Constants.dir_path + "sample\\features\\m_gbdt\\training.idx", "wb"))
     # print "All done"
 
 

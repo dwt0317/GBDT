@@ -3,7 +3,7 @@ from datetime import datetime
 import abc
 from random import sample
 from math import exp, log
-from gbdt.tree import construct_decision_tree
+from m_gbdt.tree import construct_decision_tree
 
 
 
